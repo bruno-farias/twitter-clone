@@ -3,17 +3,20 @@
  */
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Messages } from '../../api/messages'
+
 import template from './timeline.html';
 
+
 class TimelineCtrl {
-    constructor() {
-        this.messages = [{
-            text: 'Mensagem 1'
-        }, {
-            text: 'Mensagem 2'
-        }, {
-            text: 'Mensagem 3'
-        }];
+    constructor($scope) {
+        $scope.viewModel(this);
+
+        this.helpers({
+            messages() {
+                return Messages.find({});
+            }
+        })
     }
 }
 
@@ -22,5 +25,5 @@ export default angular.module('timeline', [
     ])
     .component('timeline', {
         templateUrl: 'imports/components/timeline/timeline.html',
-        controller: TimelineCtrl
+        controller: ['$scope', TimelineCtrl]
     });
