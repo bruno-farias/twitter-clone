@@ -14,10 +14,26 @@ class TimelineCtrl {
 
         this.helpers({
             messages() {
-                return Messages.find({});
+                return Messages.find({}, {
+                    sort: {
+                        createdAt: -1
+                    }
+                });
             }
         })
     }
+
+    addMessage(newMessage) {
+        //Insert a new message to database
+        Messages.insert({
+            text: newMessage,
+            createdAt: new Date
+        });
+
+        //Clear form
+        this.newMessage = '';
+    }
+
 }
 
 export default angular.module('timeline', [

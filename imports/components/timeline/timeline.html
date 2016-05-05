@@ -1,5 +1,10 @@
 <header>
     <h1>Twitter like Timeline</h1>
+
+    <form class="new-task" ng-submit="$ctrl.addMessage($ctrl.newMessage)">
+        <input ng-model="$ctrl.newMessage" type="text" name="text" placeholder="Escreva alguma coisa istepô!"/>
+    </form>
+
 </header>
 
 <ul>
